@@ -1,7 +1,7 @@
 package one.digitalinnovation.personapi.controller;
 
 import lombok.AllArgsConstructor;
-import one.digitalinnovation.personapi.dto.MessageResponseDTO;
+import one.digitalinnovation.personapi.dto.response.MessageResponseDTO;
 import one.digitalinnovation.personapi.dto.request.PersonDTO;
 import one.digitalinnovation.personapi.exception.PersonNotFoundException;
 import one.digitalinnovation.personapi.service.PersonService;
@@ -31,11 +31,13 @@ public class PersonController {
     }
 
     @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public PersonDTO findById(@PathVariable Long id) throws PersonNotFoundException {
         return personService.findById(id);
     }
 
     @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public MessageResponseDTO updateById(@PathVariable Long id, @RequestBody @Valid PersonDTO personDTO) throws PersonNotFoundException {
         return personService.updateById(id, personDTO);
     }
